@@ -4,7 +4,7 @@ var config = {
   user: 'sa',  
   password: '888888',  
   server: '127.0.0.1',   
-  database: 'admanager',  
+  database: 'ConstractSchedule',  
   port:1433,  
   options: {  
     encrypt: true // Use this if you're on Windows Azure  

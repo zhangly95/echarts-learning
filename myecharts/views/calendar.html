@@ -11,36 +11,181 @@
         var myChart = echarts.init(document.getElementById('main'));
 
         // 模拟数据
-        function getVirtulData(year) {
-            year = year || '2017';
-            var date = +echarts.number.parseDate(year + '-01-01');
-            var end = +echarts.number.parseDate(year + '-12-31');
-            var dayTime = 3600 * 24 * 1000;
-            var data = [];
-            for (var time = date; time <= end; time += dayTime) {
-                data.push([
-                    echarts.format.formatTime('yyyy-MM-dd', time),
-                    Math.floor(Math.random() * 10000)
-                ]);
-            }
-            return data;
-        }
-        var option = {
-            visualMap: {
-                show: false,
-                min: 0,
-                max: 10000
-            },
-            calendar: {
-                range: '2017'
-            },
-            series: {
-                type: 'heatmap',
-                coordinateSystem: 'calendar',
-                data: getVirtulData(2017)
-            }
-        };
-        myChart.setOption(option);
+        option = {  
+            title : {  
+                text: '手机品牌',  
+                subtext: '线、节点样式'  
+            },  
+            series : [  
+                {  
+                    name:'树图',  
+                    type:'tree',  
+                    orient: 'horizontal',  // vertical horizontal  
+                    rootLocation: {x: 100, y: '60%'}, // 根节点位置  {x: 'center',y: 10}  
+                    nodePadding: 20,  
+                    symbol: 'circle',  
+                    symbolSize: 40,  
+                    itemStyle: {  
+                        normal: {  
+                            label: {  
+                                show: true,  
+                                position: 'inside',  
+                                textStyle: {  
+                                    color: '#cc9999',  
+                                    fontSize: 15,  
+                                    fontWeight:  'bolder'  
+                                }  
+                            },  
+                            lineStyle: {  
+                                color: '#000',  
+                                width: 1,  
+                                type: 'broken' // 'curve'|'broken'|'solid'|'dotted'|'dashed'  
+                            }  
+                        },  
+                        emphasis: {  
+                            label: {  
+                                show: true  
+                            }  
+                        }  
+                    },  
+                    data: [  
+                        {  
+                            name: '手机',  
+                            value: 6,  
+
+                            itemStyle: {  
+                                normal: {  
+                                    label: {  
+                                        show: false  
+                                    }  
+                                }  
+                            },  
+                            children: [  
+                                {  
+                                    name: '小米',  
+                                    value: 4,  
+                                
+                                    itemStyle: {  
+                                        normal: {  
+                                            label: {  
+                                                show: false  
+                                            }  
+                                        }  
+                                    },  
+                                   
+                                    children: [  
+                                        {  
+                                            name: '小米1',  
+                                            symbol: 'circle',  
+                                            
+                                            value: 4,  
+                                            itemStyle: {  
+                                                normal: {  
+                                                    color: '#fa6900',  
+                                                    label: {  
+                                                        show: true,  
+                                                        position: 'right'  
+                                                    },  
+                                                      
+                                                },  
+                                                emphasis: {  
+                                                    label: {  
+                                                        show: false  
+                                                    },  
+                                                    borderWidth: 0  
+                                                }  
+                                            }  
+                                        },  
+                                        {  
+                                            name: '小米2',  
+                                            value: 4,  
+                                            symbol: 'circle',  
+                                            symbolSize: 20,  
+                                            itemStyle: {  
+                                                normal: {  
+                                                    label: {  
+                                                        show: true,  
+                                                        position: 'right',  
+                                                        formatter: "{b}"  
+                                                    },  
+                                                    color: '#fa6900',  
+                                                    borderWidth: 2,  
+                                                    borderColor: '#cc66ff'  
+          
+                                                },  
+                                                emphasis: {  
+                                                    borderWidth: 0  
+                                                }  
+                                            }  
+                                        },  
+                                        {  
+                                            name: '小米3',  
+                                            value: 2,  
+                                            symbol: 'circle',  
+                                            symbolSize: 20,  
+                                            itemStyle: {  
+                                                normal: {  
+                                                    label: {  
+                                                        position: 'right'  
+                                                    },  
+                                                    color: '#fa6900',  
+                                                    brushType: 'stroke',  
+                                                    borderWidth: 1,  
+                                                    borderColor: '#999966',  
+                                                },  
+                                                emphasis: {  
+                                                    borderWidth: 0  
+                                                }  
+                                            }  
+                                        }  
+                                    ]  
+                                },  
+                                {  
+                                    name: '苹果',  
+                                    
+                                    itemStyle: {  
+                                        normal: {  
+                                            label: {  
+                                                show: false  
+                                            }  
+                                              
+                                        }  
+                                    },  
+                                    value: 4  
+                                },  
+                                {  
+                                    name: '华为',  
+                                    
+                                    itemStyle: {  
+                                        normal: {  
+                                            label: {  
+                                                show: false  
+                                            }  
+                                              
+                                        }  
+                                    },  
+                                    value: 2  
+                                },  
+                                {  
+                                    name: '联想',  
+                                    
+                                    itemStyle: {  
+                                        normal: {  
+                                            label: {  
+                                                show: false  
+                                            }  
+                                              
+                                        }  
+                                    },  
+                                    value: 2  
+                                }  
+                            ]  
+                        }  
+                    ]  
+                }  
+            ]  
+        };               
+        myChart.setOption(option);  
     </script>
 </body>
 </html>

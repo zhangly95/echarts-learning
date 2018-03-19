@@ -1,8 +1,8 @@
 var db = require('./db');  
-db.sql('select * from XRuserSet',function(err,result){  
+db.sql('select * from Sf0ConstractSchedule',function(err,result){  
     if (err) {  
         console.log(err);  
         return;  
     }  
-    console.log('用户总数为 :',result);  
+    console.log('报表为 :',result);  
 });  
