@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>ECharts</title>
     <script src="/javascripts/echarts.min.js"></script>
+    <script src="/javascripts/jquery-3.3.1.js"></script>
 </head>
 <body>
     <div id="main" style="width:100%;height:400px;"></div>
@@ -11,181 +12,58 @@
         var myChart = echarts.init(document.getElementById('main'));
 
         // 模拟数据
-        option = {  
-            title : {  
-                text: '手机品牌',  
-                subtext: '线、节点样式'  
-            },  
-            series : [  
-                {  
-                    name:'树图',  
-                    type:'tree',  
-                    orient: 'horizontal',  // vertical horizontal  
-                    rootLocation: {x: 100, y: '60%'}, // 根节点位置  {x: 'center',y: 10}  
-                    nodePadding: 20,  
-                    symbol: 'circle',  
-                    symbolSize: 40,  
-                    itemStyle: {  
-                        normal: {  
-                            label: {  
-                                show: true,  
-                                position: 'inside',  
-                                textStyle: {  
-                                    color: '#cc9999',  
-                                    fontSize: 15,  
-                                    fontWeight:  'bolder'  
-                                }  
-                            },  
-                            lineStyle: {  
-                                color: '#000',  
-                                width: 1,  
-                                type: 'broken' // 'curve'|'broken'|'solid'|'dotted'|'dashed'  
-                            }  
-                        },  
-                        emphasis: {  
-                            label: {  
-                                show: true  
-                            }  
-                        }  
-                    },  
-                    data: [  
-                        {  
-                            name: '手机',  
-                            value: 6,  
+        myChart.showLoading();
+        $.getJSON('/data/flare.json', function (data) {
+    myChart.hideLoading();
 
-                            itemStyle: {  
-                                normal: {  
-                                    label: {  
-                                        show: false  
-                                    }  
-                                }  
-                            },  
-                            children: [  
-                                {  
-                                    name: '小米',  
-                                    value: 4,  
-                                
-                                    itemStyle: {  
-                                        normal: {  
-                                            label: {  
-                                                show: false  
-                                            }  
-                                        }  
-                                    },  
-                                   
-                                    children: [  
-                                        {  
-                                            name: '小米1',  
-                                            symbol: 'circle',  
-                                            
-                                            value: 4,  
-                                            itemStyle: {  
-                                                normal: {  
-                                                    color: '#fa6900',  
-                                                    label: {  
-                                                        show: true,  
-                                                        position: 'right'  
-                                                    },  
-                                                      
-                                                },  
-                                                emphasis: {  
-                                                    label: {  
-                                                        show: false  
-                                                    },  
-                                                    borderWidth: 0  
-                                                }  
-                                            }  
-                                        },  
-                                        {  
-                                            name: '小米2',  
-                                            value: 4,  
-                                            symbol: 'circle',  
-                                            symbolSize: 20,  
-                                            itemStyle: {  
-                                                normal: {  
-                                                    label: {  
-                                                        show: true,  
-                                                        position: 'right',  
-                                                        formatter: "{b}"  
-                                                    },  
-                                                    color: '#fa6900',  
-                                                    borderWidth: 2,  
-                                                    borderColor: '#cc66ff'  
-          
-                                                },  
-                                                emphasis: {  
-                                                    borderWidth: 0  
-                                                }  
-                                            }  
-                                        },  
-                                        {  
-                                            name: '小米3',  
-                                            value: 2,  
-                                            symbol: 'circle',  
-                                            symbolSize: 20,  
-                                            itemStyle: {  
-                                                normal: {  
-                                                    label: {  
-                                                        position: 'right'  
-                                                    },  
-                                                    color: '#fa6900',  
-                                                    brushType: 'stroke',  
-                                                    borderWidth: 1,  
-                                                    borderColor: '#999966',  
-                                                },  
-                                                emphasis: {  
-                                                    borderWidth: 0  
-                                                }  
-                                            }  
-                                        }  
-                                    ]  
-                                },  
-                                {  
-                                    name: '苹果',  
-                                    
-                                    itemStyle: {  
-                                        normal: {  
-                                            label: {  
-                                                show: false  
-                                            }  
-                                              
-                                        }  
-                                    },  
-                                    value: 4  
-                                },  
-                                {  
-                                    name: '华为',  
-                                    
-                                    itemStyle: {  
-                                        normal: {  
-                                            label: {  
-                                                show: false  
-                                            }  
-                                              
-                                        }  
-                                    },  
-                                    value: 2  
-                                },  
-                                {  
-                                    name: '联想',  
-                                    
-                                    itemStyle: {  
-                                        normal: {  
-                                            label: {  
-                                                show: false  
-                                            }  
-                                              
-                                        }  
-                                    },  
-                                    value: 2  
-                                }  
-                            ]  
-                        }  
-                    ]  
-                }  
-            ]  
-        };               
-        myChart.setOption(option);  
+    echarts.util.each(data.children, function (datum, index) {
+        index % 2 === 0 && (datum.collapsed = true);
+    });
+
+    myChart.setOption(option = {
+        tooltip: {
+            trigger: 'item',
+            triggerOn: 'mousemove'
+        },
+        series: [
+            {
+                type: 'tree',
+
+                data: [data],
+
+                top: '1%',
+                left: '7%',
+                bottom: '1%',
+                right: '20%',
+
+                symbolSize: 7,
+
+                label: {
+                    normal: {
+                        position: 'left',
+                        verticalAlign: 'middle',
+                        align: 'right',
+                        fontSize: 9
+                    }
+                },
+
+                leaves: {
+                    label: {
+                        normal: {
+                            position: 'right',
+                            verticalAlign: 'middle',
+                            align: 'left'
+                        }
+                    }
+                },
+
+                expandAndCollapse: true,
+                animationDuration: 550,
+                animationDurationUpdate: 750
+            }
+        ]
+    });
+});
     </script>
 </body>
 </html>
