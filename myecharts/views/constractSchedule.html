@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>constract tree </title>
+    <script src="/javascripts/echarts.min.js"></script>
+    <script src="/javascripts/jquery-3.3.1.js"></script>
+</head>
+<body>
+        <div id="main" style="width:100%;height:400px;"></div>
+        <script type="text/javascript">
+            var myChart = echarts.init(document.getElementById('main'));
+            //var data0 = <%= constractName0%>;    
+            //var data1 = <%= constractName1%>; 
+           // var data2 = <%= constractName2%>; 
+            //var data3 = <%= constractName3%>; 
+            //console.log(data0);
+            myChart.setOption(option = {
+                title:{
+                    show:true,
+                    text:'constract overview',
+
+                },
+        tooltip: {
+            trigger: 'item',
+            triggerOn: 'mousemove'
+        },
+        series: [
+            {
+                type: 'tree',
+                data: [
+                    {
+                        name:'constract',
+                        children:[
+                           {name: '<%= constractName0%>',
+                           symbol:'diamond',
+                            children:[
+                                {name:'<%= approvalNumber0%>',symbol:'pin'},
+                                {name:'<%= contactPersonnel0%>',symbol:'pin'},
+                                {name:'<%= ownershipSystem0%>',symbol:'pin'},
+                            ]},
+                           {name:'<%= constractName1%>',
+                           symbol:'diamond',
+                           children:[
+                                {name:'<%= approvalNumber1%>',symbol:'pin'},
+                                {name:'<%= contactPersonnel1%>',symbol:'pin'},
+                                {name:'<%= ownershipSystem1%>',symbol:'pin'},
+                            ]
+                        },
+                           {name:'<%= constractName2%>',
+                           symbol:'diamond',
+                           children:[
+                                {name:'<%= approvalNumber2%>',symbol:'pin'},
+                                {name:'<%= contactPersonnel2%>',symbol:'pin'},
+                                {name:'<%= ownershipSystem2%>',symbol:'pin'},
+                            ]
+                        },
+                           {name:'<%= constractName3%>',
+                           symbol:'diamond',
+                           children:[
+                                {name:'<%= approvalNumber3%>',symbol:'pin'},
+                                {name:'<%= contactPersonnel3%>',symbol:'pin'},
+                                {name:'<%= ownershipSystem3%>',symbol:'pin'},
+                            ]
+                        },
+                        ]
+                    }
+                ],
+
+                top: '1%',
+                left: '7%',
+                bottom: '1%',
+                right: '20%',
+
+                symbolSize: 7,
+
+                label: {
+                    normal: {
+                        position: 'left',
+                        verticalAlign: 'middle',
+                        align: 'right',
+                        fontSize: 9
+                    }
+                },
+
+                leaves: {
+                    label: {
+                        normal: {
+                            position: 'right',
+                            verticalAlign: 'middle',
+                            align: 'left'
+                        }
+                    }
+                },
+
+                expandAndCollapse: true,
+                animationDuration: 550,
+                animationDurationUpdate: 750
+            }
+        ]
+    });
+        </script>    
+</body>
+</html>
