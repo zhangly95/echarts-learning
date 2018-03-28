@@ -8,12 +8,24 @@ router.get('/', function(req, res, next) {
         console.log(err);  
         return;  
     }  
-   // console.log('报表为 :',result);  
-    res.render('constractSchedule.html', {constractName0: result[0].constractName, constractName1: result[1].constractName,
-      constractName2: result[2].constractName,constractName3: result[3].constractName,
-    approvalNumber0:result[0].approvalNumber,approvalNumber1:result[1].approvalNumber,approvalNumber2:result[2].approvalNumber,approvalNumber3:result[3].approvalNumber,
-  contactPersonnel0:result[0].contactPersonnel,contactPersonnel1:result[1].contactPersonnel,contactPersonnel2:result[2].contactPersonnel,contactPersonnel3:result[3].contactPersonnel,
-ownershipSystem0:result[0].ownershipSystem,ownershipSystem1:result[1].ownershipSystem,ownershipSystem2:result[2].ownershipSystem,ownershipSystem3:result[3].ownershipSystem});
-});  
+    //console.log('报表为 :',result);  
+  var approvalNumber=new Array();
+  var constractName=new Array();
+  var contactPersonnel=new Array();
+  var ownershipSystem=new Array();
+    result.forEach((element,index) => {
+      approvalNumber[index]=element.approvalNumber;
+      constractName[index]=element.constractName;
+      contactPersonnel[index]=element.contactPersonnel;
+      ownershipSystem[index]=element.ownershipSystem;
+    })
+    console.log( approvalNumber);
+      console.log(constractName[0]);
+    res.render('constractSchedule.html', {
+      ConstractName: constractName,
+      ApprovalNumber:approvalNumber,
+      ContactPersonnel:contactPersonnel,
+      OwnershipSystem:ownershipSystem});
+}); 
   });
   module.exports = router;

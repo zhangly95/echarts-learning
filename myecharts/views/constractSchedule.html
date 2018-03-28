@@ -12,11 +12,7 @@
         <div id="main" style="width:100%;height:400px;"></div>
         <script type="text/javascript">
             var myChart = echarts.init(document.getElementById('main'));
-            //var data0 = <%= constractName0%>;    
-            //var data1 = <%= constractName1%>; 
-           // var data2 = <%= constractName2%>; 
-            //var data3 = <%= constractName3%>; 
-            //console.log(data0);
+           
             myChart.setOption(option = {
                 title:{
                     show:true,
@@ -34,35 +30,51 @@
                     {
                         name:'constract',
                         children:[
-                           {name: '<%= constractName0%>',
+                           {name: '<%= ConstractName[0]%>',
                            symbol:'diamond',
                             children:[
-                                {name:'<%= approvalNumber0%>',symbol:'pin'},
-                                {name:'<%= contactPersonnel0%>',symbol:'pin'},
-                                {name:'<%= ownershipSystem0%>',symbol:'pin'},
+                                {name:'<%= ApprovalNumber[0]%>',symbol:'pin'},
+                                {name:'<%= ContactPersonnel[0]%>',symbol:'pin'},
+                                {name:'<%= OwnershipSystem[0]%>',symbol:'pin'},
                             ]},
-                           {name:'<%= constractName1%>',
+                           {name:'<%= ConstractName[1]%>',
                            symbol:'diamond',
                            children:[
-                                {name:'<%= approvalNumber1%>',symbol:'pin'},
-                                {name:'<%= contactPersonnel1%>',symbol:'pin'},
-                                {name:'<%= ownershipSystem1%>',symbol:'pin'},
+                                {name:'<%= ApprovalNumber[1]%>',symbol:'pin'},
+                                {name:'<%= ContactPersonnel[1]%>',symbol:'pin'},
+                                {name:'<%= OwnershipSystem[1]%>',symbol:'pin'},
                             ]
                         },
-                           {name:'<%= constractName2%>',
+                           {name:'<%= ConstractName[2]%>',
                            symbol:'diamond',
                            children:[
-                                {name:'<%= approvalNumber2%>',symbol:'pin'},
-                                {name:'<%= contactPersonnel2%>',symbol:'pin'},
-                                {name:'<%= ownershipSystem2%>',symbol:'pin'},
+                                {name:'<%= ApprovalNumber[2]%>',symbol:'pin'},
+                                {name:'<%= ContactPersonnel[2]%>',symbol:'pin'},
+                                {name:'<%= OwnershipSystem[2]%>',symbol:'pin'},
                             ]
                         },
-                           {name:'<%= constractName3%>',
+                           {name:'<%= ConstractName[3]%>',
                            symbol:'diamond',
                            children:[
-                                {name:'<%= approvalNumber3%>',symbol:'pin'},
-                                {name:'<%= contactPersonnel3%>',symbol:'pin'},
-                                {name:'<%= ownershipSystem3%>',symbol:'pin'},
+                                {name:'<%= ApprovalNumber[3]%>',symbol:'pin'},
+                                {name:'<%= ContactPersonnel[3]%>',symbol:'pin'},
+                                {name:'<%= OwnershipSystem[3]%>',symbol:'pin'},
+                            ]
+                        },
+                        {name:'<%= ConstractName[4]%>',
+                           symbol:'diamond',
+                           children:[
+                                {name:'<%= ApprovalNumber[4]%>',symbol:'pin'},
+                                {name:'<%= ContactPersonnel[4]%>',symbol:'pin'},
+                                {name:'<%= OwnershipSystem[4]%>',symbol:'pin'},
+                            ]
+                        },
+                        {name:'<%= ConstractName[5]%>',
+                           symbol:'diamond',
+                           children:[
+                                {name:'<%= ApprovalNumber[5]%>',symbol:'pin'},
+                                {name:'<%= ContactPersonnel[5]%>',symbol:'pin'},
+                                {name:'<%= OwnershipSystem[5]%>',symbol:'pin'},
                             ]
                         },
                         ]
